@@ -1,0 +1,13 @@
+DC motor 1: positive wire MA1 negative wire MB2
+DC motor 2: positive wire MA1 negative wire  MA2
+
+HC-SR04 ultrasonic sensor 1:  echo GPIO24 trig GPIO25 vcc 5V
+HC-SR04 ultrasonic sensor 2:  echo GPIO27 trig GPIO17 vcc 5V
+HC-SR04 ultrasonic sensor 3:  echo GPIO20 trig GPIO12 vcc 5V
+
+Red LED light: GPIO16
+
+//still need pins for these
+Line sensor 1: D0 GND VCC
+Line sensor 2: D0 GND VCC
+Line sensor 3: D0 GND VCC
