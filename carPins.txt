@@ -7,7 +7,13 @@ HC-SR04 ultrasonic sensor 3:  echo GPIO20 trig GPIO12 vcc 5V
 
 Red LED light: GPIO16
 
-//still need pins for these
-Line sensor 1: D0 GND VCC
-Line sensor 2: D0 GND VCC
-Line sensor 3: D0 GND VCC
+Right Line sensor 1: D0 GPIO13 GND VCC
+Middle Line sensor 2: D0 GPIO21 GND VCC
+Left Line sensor 3: D0 GPIO19 GND VCC
+
+Motor Encoder Board: pin19/GPIO 10 pin21/GPIO 9 pin23/GPIO 11 pin24/GPIO 8 pin26/GPIO 7
+//both motors connected to a motor HAT
+
+
+
+
