@@ -13,7 +13,11 @@ int main(){
 
     /* ***** PI SETUP ***** */
     wiringPiSetupGpio();
-    //pinMode();
+
+    // IR SENSOR 
+    pinMode(LEFT_PIN, OUTPUT);
+    pinMode(MID_PIN, OUTPUT);
+    pinMode(RIGHT_PIN, OUTPUT);
 
     /* ***** BUTTON PRESSED ***** */
     running = 1;
@@ -32,6 +36,7 @@ int main(){
             printf("Thread start fail...");
             }*/
 
+        
         int lineThread = piThreadCreate (lineSens);
         
 

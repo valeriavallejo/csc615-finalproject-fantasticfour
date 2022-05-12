@@ -6,8 +6,11 @@
 #define MID_PIN 10
 #define RIGHT_PIN 10
 
+
+
 int leftVal;
 int midVal;
 int rightVal;
 
 void threadInit();
+
