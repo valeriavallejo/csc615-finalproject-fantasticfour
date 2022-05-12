@@ -13,70 +13,45 @@
 
 #include "line.h"
 
-PI_THREAD (lineSens)
-    {
-        // not sure if setting other variables to 0 is necessary if we trust that the line sensors are far apart enough
-        while (1){
-            if (digitalRead(LEFT_PIN)){
-                leftVal = 1;
-                midVal = 0;
-                rightVal = 0;
-            }
-            else if (digitalRead(MID_PIN)){
-                leftVal = 0;
-                midVal = 1;
-                rightVal = 0;
-            }
-            else if (digitalRead(RIGHT_PIN)){
-                leftVal = 0;
-                midVal = 0;
-                rightVal = 1;
-            }
-            else {
-                // none tracked, probably in echo sensor mode 
-            }
+//maybe put all this into a function thats called in main
+
+//how will other files get info from this file ?
+    // function that can access the value in the struct whenever it needs to
+    // there should be an "alarm" when they line is not detected by mid sensor
+
+
+
+// ***** init line sensors *****
+struct LineSensor *left = (struct LineSensor *)malloc(sizeof(struct LineSensor));
+left->value = 0;
+left->pin = LEFT_PIN;
+
+struct LineSensor *mid = (struct LineSensor *)malloc(sizeof(struct LineSensor));
+left->value = 0;
+left->pin = MID_PIN;
+
+struct LineSensor *right = (struct LineSensor *)malloc(sizeof(struct LineSensor));
+left->value = 0;
+left->pin = RIGHT_PIN;
+
+// init threads
+pthread_t left_line_thread;
+pthread_t mid_line_thread;
+pthread_t right_line_thread;
+
+// create threads
+pthread_create(&left_line_thread, NULL, setLineState, &left);
+pthread_create(&mid_line_thread, NULL, setLineState, &mid);
+pthread_create(&right_line_thread, NULL, setLineState, &right);
+
+// threads will each run their own version of this to keep track of own line sensor
+void *setLineState(struct LineSensor *linesensor){
+    while (1){
+        if (digitalRead((*linesensor).pin)){
+            (*linesensor).value = 1;
+        }
+        else {
+            (*linesensor).value = 0;
         }
     }
-
-// thread for each sensor to keep track of its value, to be used in main loop.
-
-
-/*void threadInit(){
-
-    PI_THREAD (leftSens)
-    {
-        while (1){
-            if (digitalRead(LEFT_PIN)){
-                leftVal = 1;
-            }
-            else {
-                leftVal = 0;
-            }
-        }
-    }
-
-    PI_THREAD (midSens)
-    {
-        while (1){
-            if (digitalRead(MID_PIN)){
-                midVal = 1;
-            }
-            else {
-                midVal = 0;
-            }
-    }
-    }
-
-    PI_THREAD (rightSens)
-    {
-        while (1){
-            if (digitalRead(RIGHT_PIN)){
-                rightVal = 1;
-            }
-            else {
-                rightVal = 0;
-            }
-    }
-    }
-
-}*/
+}
