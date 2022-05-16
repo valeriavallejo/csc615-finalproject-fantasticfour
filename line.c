@@ -79,18 +79,25 @@ void *setLineState(struct LineSensor *linesensor){
     
 }
 
+string getLineState(){
+    linestate[0] = (*left).value;
+    linestate[1] = (*mid).value;
+    linestate[2] = (*right).value;
+    return lineState;
+}
+
 // idk if initialized correctly
 // note, this isnt the main line thread's function i think.
 // this one should be constantly called in main or motor so we know if we should
 // be turning or going straight
-struct LineState getLineState(){
+/*struct LineState getLineState(){
     struct LineState linestate = (struct LineState *)malloc(sizeof(struct LineState));
     (*linestate).left_val = left.value;
     (*linestate).mid_val = mid.value;
     (*linestate).right_val = right.value;
 
     return linestate;
-}
+}*/
 
 // needs params?
 void freeLines(){
@@ -98,3 +105,35 @@ void freeLines(){
 
 
 }
+
+
+/* ****** WITHOUT EACH LINE SENSOR HAVING A THREAD
+
+    while(linesensing){
+        if(digitalRead(LEFT_PIN)
+        {
+            leftlineval = 1;
+        }
+        else{
+            leftlineval = 0;
+        }
+
+        if(digitalRead(MID_PIN)
+        {
+            midlineval = 1;
+        }
+        else{
+            midlineval = 0;
+        }
+
+        if(digitalRead(RIGHT_PIN)
+        {
+            rightlineval = 1;
+        }
+        else{
+            rightlineval = 0;
+        }  
+    }
+
+    
+*/

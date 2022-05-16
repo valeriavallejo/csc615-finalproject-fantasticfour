@@ -7,7 +7,9 @@ HC-SR04 ultrasonic sensor 3:  echo GPIO20 trig GPIO12 vcc 5V
 
 Red LED light: GPIO16
 
+IR Sensor: GPIO23 out,  vcc 5v
+
 //still need pins for these
-Line sensor 1: D0 GND VCC
-Line sensor 2: D0 GND VCC
-Line sensor 3: D0 GND VCC
+Line sensor 1 (left): D0 GPIO5 GND VCC
+Line sensor 2 (mid): D0 GPIO6 GND VCC
+Line sensor 3 (right): D0 GPIO13 GND VCC
