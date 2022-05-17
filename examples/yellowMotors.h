@@ -19,6 +19,12 @@
 #include "MotorDriver.h"
 #include "PCA9685.h"
 
+int speed;
+
+void motorsForward(int speed);
+void motorsBackward(int speed);
+
 void inItYellowMotors();
+void exitYellowMotors();
 
 #endif 
