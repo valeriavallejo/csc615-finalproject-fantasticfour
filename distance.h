@@ -10,11 +10,9 @@
 #ifndef distance_h
 #define distance_h
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <wiringPi.h>
+#include <stdbool.h>
 
 #define ECHOONE 5 //GPIO24/WPI 5
 #define TRIGGERONE 6 //GPIO25/WPI 6
@@ -23,14 +21,37 @@
 #define ECHOTHREE 28 //GPIO2O/WPI 28
 #define TRIGGERTHREE 26 //GPIO12/WPI 26
 
+int measurmentOne; //left
+int measurmentTwo; //middle
+int measurmentThree; //right
+
+int threadOne;
+int threadTwo;
+int threadThree;
+
+void *distanceOne;
+void *distanceTwo;
+void *distanceThree;
+    
+    
+pthread_t one;
+pthread_t two;
+pthread_t three;
+
+bool flagOne;
+bool flagTwo;
+bool flagThree;
+
 void *distanceSensorOne(void *arg);
 void *distanceSensorTwo(void *arg);
 void *distanceSensorThree(void *arg);
 
-int getMeasurmentOne(void);
-int  getMeasurmentTwo(void);
-int  getMeasurmentThree(void);
+void threadOneInIt();
+void threadTwoInIt();
+void threadThreeInIt();
 
 void inItDistanceThreads();
 
 #endif /* distance_h */
+
+
