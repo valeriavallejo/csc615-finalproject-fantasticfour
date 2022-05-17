@@ -14,11 +14,26 @@ void inItYellowMotors() {
 
   wiringPiSetup();
   
-
 if (DEV_ModuleInit())
         exit(0);
-
-
-  DEV_ModuleExit();
-  return 0;
+    MotorInit();
 }
+void  motorsForward(int speed){
+    MotorForward(MOTORA,speed);
+    
+    MotorForward(MOTORB,speed);
+}
+ void motorsBackward(int speed){
+    MotorBackward(MOTORA,speed);
+    
+    MotorBackward(MOTORB,speed);
+}
+  
+    
+ void exitYellowMotors(){
+    MotorStop(MOTORA);
+    MotorStop(MOTORB);
+    
+  DEV_ModuleExit();
+}
+//delay(1000); use in main file
