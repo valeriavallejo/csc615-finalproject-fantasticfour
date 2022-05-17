@@ -11,6 +11,7 @@
 #include "Debug.h"
 
 
+
 void MotorInit(void) { PCA9685_Init(0x40);
     PCA9685_SetPWMFreq(100);
 }
@@ -21,8 +22,8 @@ if(motor == MOTORA){
         PCA9685_SetPwmDutyCycle(PWMA, speed);
            
              DEBUG("forward...\r\n");
-            PCA9685_SetLevel(AIN1, 0);
-            PCA9685_SetLevel(AIN2, 1);
+            PCA9685_SetLevel(AIN1, 1);
+            PCA9685_SetLevel(AIN2, 0);
      
 }else if(motor == MOTORB){
     PCA9685_SetPwmDutyCycle(PWMB, speed);
@@ -39,8 +40,8 @@ if(motor == MOTORA){
 PCA9685_SetPwmDutyCycle(PWMA, speed);
 
 DEBUG("backward \n");
-PCA9685_SetLevel(AIN1, 1);
-PCA9685_SetLevel(AIN2, 0);
+PCA9685_SetLevel(AIN1, 0);
+PCA9685_SetLevel(AIN2, 1);
 
 }else if(motor == MOTORB){
     PCA9685_SetPwmDutyCycle(PWMB, speed);
