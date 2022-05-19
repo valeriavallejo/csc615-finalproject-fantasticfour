@@ -1,13 +1,15 @@
-// putting everything together
+#include <stdio.h>
+#include <stdlib.h>
+#include <wiringPi.h>
 
-// will have the main running loop for all the parts
-
-// pi set up too
-
+#include "distance.h"
+#include "instructions.h"
 #include "line.h"
 
 
 int running;
+#define REDLED 27 //GPIO16/WIPI 27
+bool runFlag;
 
 int main(){
 
@@ -19,32 +21,76 @@ int main(){
     pinMode(MID_PIN, OUTPUT);
     pinMode(RIGHT_PIN, OUTPUT);
 
-    // malloc here, update in loop
-    struct LineState linestate = (struct LineState *)malloc(sizeof(struct LineState));
+    //Red led light (light on == car on, light off == car off)
+    pinMode(RED, OUTPUT);
+
+    // ****** THREADS ******
+    pthread_t line_thread;
 
     /* ***** BUTTON PRESSED ***** */
     running = 1;
-
-
+    
     while (running){
 
-        // init threads for each sensor thing?
+        digitalWrite(RED, HIGH);
+        delay(500);
 
         /* ***** LINE SENSORS ***** */
         linesensing = true;
         threadInit();
-        // if i make a thread for the line sensor one, then the while loop
-        // should be in the getLineState function and that function should
-        // be the thread's function
-        while(linesensing){
-            // make thread to track line state (apart from the 3 in line.c)
-            linestate = getLineState();
-            // use linestate in other files to determine movement
+
+        // need to make new thread everytime we go in this mode
+        // thread will enter loop withing the thread function
+        if(linesensing){
+            int thread_ok = pthread_create(&line_thread, NULL, setLineState, NULL);
+            if(thread_ok != 0){
+                printf("\nLine thread creation failed.\n");
+            }
+
+            // thread automatically destroyed when run function has completed.
+
+            // *********** JOIN THREADS SOMEWHERE *****************
+            pthread_join(line_thread, NULL);
         }
 
          
 
         /* ***** ECHO SENSORS ***** */
+
+        while(distanceSensing){
+        inItDistanceThreads();
+
+            if(flagOne == false){
+                printf("one %d\n", measurmentOne);
+                printf("one %d\n", flagOne);
+
+                distanceSensing = false;
+                running = 0;
+            }
+
+        if(flagTwo == false){
+                printf("two %d\n", measurmentTwo);
+                printf("two %d\n", flagTwo);
+    
+//              distanceSensing = false;
+                running = 0;
+
+            }
+
+            if(flagThree == false){
+                printf("three %d\n", measurmentThree);
+                printf("three %d\n", flagThree);
+
+//              distanceSensing = false;
+                running = 0;
+
+            }
+        
+        }
+    }   
+}
+
+    /****** MOTORS ??? ******
 
     }
 

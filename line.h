@@ -17,31 +17,4 @@ bool linesensing;
    linestate[1] is the middle sensor's state
    linestate[2] is the right sensor's state
 */
-string lineState = "000";
-
-// args for thread_create:
-struct LineSensor {
-    int value;
-    int pin;
-}
-
-/* struct LineState {
-    int left_val;
-    int mid_val;
-    int right_val;
-} */
-
-void threadInit();
-struct LineState getLineState();
-void freeLines();
-
-struct LineSensor *left;
-struct LineSensor *mid;
-struct LineSensor *right;
-
-
-/* ****** WITHOUT EACH LINE SENSOR HAVING A THREAD
-int leftlineval;
-int midlineval;
-int rightlineval;
-*/
+int lineState[3] = {0, 0, 0};
