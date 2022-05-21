@@ -1,57 +1,90 @@
 /**************************************************************
  * Class: CSC-615-01 Spring 2022
- * Name:
+ * Name:fantastic four
  * Student ID:
  * Github ID:
- * Project:
+ * Project:robot car
  * File: MotorDriver.c
- * Description:
+ * Description: this file initializes two Motor driver HAT and uses the channels allocated to each motor to give them directions
+  *on which direction to turn. 
  * **************************************************************/
 #include "MotorDriver.h"
 #include "Debug.h"
-
-
-
+///initializes a second motor diver HAT
+void MotorInitOne(void){
+    PCA9685_InitOne(0x41);
+    PCA9685_SetPWMFreqOne(100);
+}
+//initializes the first motor driver HAT used
 void MotorInit(void) { PCA9685_Init(0x40);
     PCA9685_SetPWMFreq(100);
 }
-
+//makes the motor entered go forward at the speed entered
 void MotorForward(UBYTE motor, UWORD speed)
 {
 if(motor == MOTORA){
         PCA9685_SetPwmDutyCycle(PWMA, speed);
-           
+
              DEBUG("forward...\r\n");
-            PCA9685_SetLevel(AIN1, 1);
-            PCA9685_SetLevel(AIN2, 0);
-     
+            PCA9685_SetLevel(AIN1, 0);
+            PCA9685_SetLevel(AIN2, 1);
+
 }else if(motor == MOTORB){
     PCA9685_SetPwmDutyCycle(PWMB, speed);
-       
+
          DEBUG("forward...\r\n");
         PCA9685_SetLevel(BIN1, 0);
         PCA9685_SetLevel(BIN2, 1);
-    
-}
-}
 
+}
+    if(motor == MOTORC){
+            PCA9685_SetPwmDutyCycle(PWMA, speed);
+
+                 DEBUG("forward...\r\n");
+                PCA9685_SetLevel(CIN1, 0);
+                 PCA9685_SetLevel(CIN2, 1);
+
+    }else if(motor == MOTORD){
+        PCA9685_SetPwmDutyCycle(PWMB, speed);
+
+             DEBUG("forward...\r\n");
+            PCA9685_SetLevel(DIN1, 0);
+            PCA9685_SetLevel(DIN2, 1);
+
+    }
+}
+//makes the motor entered go backward at the speed entered
 void MotorBackward(UBYTE motor, UWORD speed){
 if(motor == MOTORA){
 PCA9685_SetPwmDutyCycle(PWMA, speed);
 
 DEBUG("backward \n");
-PCA9685_SetLevel(AIN1, 0);
-PCA9685_SetLevel(AIN2, 1);
+PCA9685_SetLevel(AIN1, 1);
+PCA9685_SetLevel(AIN2, 0);
 
 }else if(motor == MOTORB){
     PCA9685_SetPwmDutyCycle(PWMB, speed);
-
     DEBUG("backward \n");
     PCA9685_SetLevel(BIN1, 1);
     PCA9685_SetLevel(BIN2, 0);
 }
+    if(motor == MOTORC){
+    PCA9685_SetPwmDutyCycle(PWMA, speed);
+
+    DEBUG("backward \n");
+    PCA9685_SetLevel(CIN1, 1);
+    PCA9685_SetLevel(CIN2, 0);
+
+    }else if(motor == MOTORD){
+        PCA9685_SetPwmDutyCycle(PWMB, speed);
+
+        DEBUG("backward \n");
+        PCA9685_SetLevel(DIN1, 1);
+        PCA9685_SetLevel(DIN2, 0);
+    }
 
 }
+//stops the motor entered
 void MotorStop(UBYTE motor)
 {
     if(motor == MOTORA) {
@@ -60,5 +93,12 @@ void MotorStop(UBYTE motor)
     }else if(motor == MOTORB){
         DEBUG("Motor stop \n");
           PCA9685_SetPwmDutyCycle(PWMB, 0);
+    }
+    if(motor == MOTORC) {
+      DEBUG("Motor stop \n");
+        PCA9685_SetPwmDutyCycle(PWMC, 0);
+    }else if(motor == MOTORD){
+        DEBUG("Motor stop \n");
+          PCA9685_SetPwmDutyCycle(PWMD, 0);
     }
 }
