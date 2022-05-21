@@ -10,7 +10,8 @@
  that is less than or equal to 10cm. 
  * **************************************************************/
 #include "distance.h"
-
+//controls the left sensor 
+//returns distance of object from car in cm
 void *distanceSensorOne(void *arg){
     long startT;
      long endT;
@@ -49,6 +50,8 @@ void *distanceSensorOne(void *arg){
         
     }
 }
+//controls the middle sensor 
+//returns distance of object from car in cm
 void *distanceSensorTwo(void *arg){
     long startT;
      long endT;
@@ -85,6 +88,8 @@ pinMode(TRIGGERTWO, OUTPUT);
         }
     }
 }
+//controls the right sensor 
+//returns distance of object from car in cm
 void *distanceSensorThree(void *arg){
     long startT;
      long endT;
@@ -121,6 +126,7 @@ void *distanceSensorThree(void *arg){
         }
     }
 }
+//each initialize and start a thread
 void threadOneInIt(){
     threadOne = pthread_create(&one,NULL,distanceSensorOne,NULL);
 
@@ -134,7 +140,8 @@ void threadThreeInIt(){
      
 
 }
-
+//initializes all three threads 
+//this method also initializes three variables with values returned from the threads
 void inItDistanceThreads(){
     
         
@@ -158,10 +165,11 @@ void inItDistanceThreads(){
          printf("thread three : %d \n", measurmentThree);
 
        }
-pthread_join(one, &distanceOne);
+ 
+////pthread_join(one, &distanceOne);
 
-pthread_join(two, &distanceTwo);
-pthread_join(three, &distanceThree);
+//pthread_join(two, &distanceTwo);
+//pthread_join(three, &distanceThree);
 
       //  printf("thread one : %d \n", measurmentOne);
         //   printf("thread two : %d \n", measurmentTwo);
