@@ -21,6 +21,7 @@
 #define SUBADR2             0x03
 #define SUBADR3             0x04
 #define MODE1               0x00
+#define MODE2             0x01 //for second motor HAT used
 #define PRESCALE            0xFE
 #define LED0_ON_L           0x06
 #define LED0_ON_H           0x07
