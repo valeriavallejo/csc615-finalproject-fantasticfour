@@ -1,82 +1,101 @@
-// three global variables for each sensor (0 / 1)
-
-// threads tracking variables
-
-// have loop that checks if middle sensor is on line
-    // if not on middle sensor, check other sensors
-
-        //if detected by left sensor
-            //call left function until the middle sensor senses again
-
-        //if detected by right sensor
-            //call right function until the middle sensor senses again
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID: 920594217
+ * Github ID: valeriavallejo
+ * Project:robot car
+ * File: line.c
+ * Description: This file contains the code that the line_thread in main
+ * will run. The loop checks whether the IR sensor sees the line or not
+ * and updates lineState array with the values to later be evaluated
+ * in instructions.c
+ * **************************************************************/
 
 #include "line.h"
 
-PI_THREAD (lineSens)
-    {
-        // not sure if setting other variables to 0 is necessary if we trust that the line sensors are far apart enough
-        while (1){
-            if (digitalRead(LEFT_PIN)){
-                leftVal = 1;
-                midVal = 0;
-                rightVal = 0;
-            }
-            else if (digitalRead(MID_PIN)){
-                leftVal = 0;
-                midVal = 1;
-                rightVal = 0;
-            }
-            else if (digitalRead(RIGHT_PIN)){
-                leftVal = 0;
-                midVal = 0;
-                rightVal = 1;
-            }
-            else {
-                // none tracked, probably in echo sensor mode 
-            }
+void *setLineState(){
+    int counter = 0; // just for testing'
+    while(linesensing){
+        if(digitalRead(LEFT_PIN))
+        {
+            leftlineval = 1;
+        }
+        else{
+            leftlineval = 0;
+        }
+
+        if(digitalRead(MID_PIN))
+        {
+            midlineval = 1;
+        }
+        else{
+            midlineval = 0;
+        }
+
+        if(digitalRead(RIGHT_PIN))
+        {
+            rightlineval = 1;
+        }
+        else{
+            rightlineval = 0;
+        }  
+
+        // update current state of line
+        lineState[0] = leftlineval;
+        lineState[1] = midlineval;
+        lineState[2] = rightlineval;
+
+        printf("Line State: %d %d %d\n", lineState[0], lineState[1], lineState[2]);
+
+        // temporary, just for testing a limited amount of time
+        counter++;
+        if(counter >= 20){
+            linesensing = false;
         }
     }
+    return NULL;
+}
 
-// thread for each sensor to keep track of its value, to be used in main loop.
+/*int main(){
+    int counter = 0; // just for testing
+    linesensing = true;
+    while(linesensing){
+        if(digitalRead(LEFT_PIN))
+        {
+            leftlineval = 1;
+        }
+        else{
+            leftlineval = 0;
+        }
 
+        if(digitalRead(MID_PIN))
+        {
+            midlineval = 1;
+        }
+        else{
+            midlineval = 0;
+        }
 
-/*void threadInit(){
+        if(digitalRead(RIGHT_PIN))
+        {
+            rightlineval = 1;
+        }
+        else{
+            rightlineval = 0;
+        }  
 
-    PI_THREAD (leftSens)
-    {
-        while (1){
-            if (digitalRead(LEFT_PIN)){
-                leftVal = 1;
-            }
-            else {
-                leftVal = 0;
-            }
+        // update current state of line
+        lineState[0] = leftlineval;
+        lineState[1] = midlineval;
+        lineState[2] = rightlineval;
+
+        printf("Line State: %d %d %d\n", lineState[0], lineState[1], lineState[2]);
+
+        // temporary, just for testing a limited amount of time
+        counter++;
+        if(counter >= 20){
+            linesensing = false;
         }
     }
-
-    PI_THREAD (midSens)
-    {
-        while (1){
-            if (digitalRead(MID_PIN)){
-                midVal = 1;
-            }
-            else {
-                midVal = 0;
-            }
-    }
-    }
-
-    PI_THREAD (rightSens)
-    {
-        while (1){
-            if (digitalRead(RIGHT_PIN)){
-                rightVal = 1;
-            }
-            else {
-                rightVal = 0;
-            }
-    }
-    }
-
+    return 0;
 }*/

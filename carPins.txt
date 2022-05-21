@@ -1,3 +1,13 @@
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID:
+ * Github ID:
+ * Project:robot car
+ * File: carPins.txt
+ * Description:This file contains a list of the pins from the raspberry pi used for each piece of hardware
+ * **************************************************************/
+
 DC motor 1: positive wire MA1 negative wire MB2
 DC motor 2: positive wire MA1 negative wire  MA2
 
@@ -7,13 +17,12 @@ HC-SR04 ultrasonic sensor 3:  echo GPIO20 trig GPIO12 vcc 5V
 
 Red LED light: GPIO16
 
-Right Line sensor 1: D0 GPIO13 GND VCC
-Middle Line sensor 2: D0 GPIO21 GND VCC
-Left Line sensor 3: D0 GPIO19 GND VCC
+//still need pins for these
+Line sensor 1 (left): D0 GPIO5 GND VCC
+Line sensor 2 (mid): D0 GPIO6 GND VCC
+Line sensor 3 (right): D0 GPIO13 GND VCC
 
 Motor Encoder Board: pin19/GPIO 10 pin21/GPIO 9 pin23/GPIO 11 pin24/GPIO 8 pin26/GPIO 7
 //both motors connected to a motor HAT
-
-
 
 
