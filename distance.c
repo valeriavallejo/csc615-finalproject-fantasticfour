@@ -1,11 +1,13 @@
 /**************************************************************
  * Class: CSC-615-01 Spring 2022
- * Name:
- * Student ID:
+ * Name:fantastic four
+ * Student ID:918689985
  * Github ID:
- * Project:
+ * Project: robot car
  * File: distance.c
- * Description:
+ * Description:this file contains a program that runs three threads that control
+ three ultrasonic sensors. Each thread exits when they detect an object
+ that is less than or equal to 10cm. 
  * **************************************************************/
 #include "distance.h"
 
