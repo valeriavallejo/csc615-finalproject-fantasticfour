@@ -29,7 +29,7 @@ int main(){
 
     /* ***** BUTTON PRESSED ***** */
     running = 1;
-    
+
     while (running){
 
         digitalWrite(RED, HIGH);
@@ -37,7 +37,6 @@ int main(){
 
         /* ***** LINE SENSORS ***** */
         linesensing = true;
-        threadInit();
 
         // need to make new thread everytime we go in this mode
         // thread will enter loop withing the thread function
@@ -91,12 +90,4 @@ int main(){
 }
 
     /****** MOTORS ??? ******
-
-    }
-
-
-
-    // ****** FREE STRUCTS MALLOC
-    // linestate
-
-}
+S
