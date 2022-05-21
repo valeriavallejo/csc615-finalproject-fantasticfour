@@ -1,5 +1,6 @@
 #include "instructions.h"
 
+
 // add conditionals
 
 // examples:
@@ -10,25 +11,54 @@
 //if right echo sensor senses it within 10 cm, turn left again, go forward, 
 // turn right and check for obstacle again
 
-// each instruction thing should probably have its own thread (one for echo and one for line sensor)
+void right(){
+    MotorForward(MOTORA, speed);
+    MotorBackward(MOTORB, speed);
+    MotorForward(MOTORC, speed);
+    MotorBackward(MOTORD, speed);
+}
+void left(){
+    MotorForward(MOTORA, speed);
+    MotorBackward(MOTORB, speed);
+    MotorForward(MOTORC, speed);
+    MotorBackward(MOTORD, speed);
+}
 
 // ***** CHECKING IF ON LINE
-if(strcmp(linestate, "100") == 0)
-{
-    while(strcmp(linestate, "100" != 0)){
-        // turn left, should be defined in wheels.c
+void onLine(){
+    if( linestate[0] == 1 &&
+        linestate[1] == 0 &&
+        linestate[2] == 0 ){
+        while(  linestate[0] == 1 &&
+                linestate[1] == 0 &&
+                linestate[2] == 0 )
+        {
+            left();
+        }
     }
-}
-else if(strcmp(linestate, "010"))
-{
-    // no while loop, keep moving straight
-}
-else if(strcmp(linestate, "001"))
-{
-    while(strcmp(linestate, "001" != 0)){
-        // turn right, should be defined in wheels.c
+    else if(linestate[0] == 0 &&
+            linestate[1] == 0 &&
+            linestate[2] == 1 ){
+        while(linestate[0] == 0 &&
+            linestate[1] == 0 &&
+            linestate[2] == 1 )
+            {
+                right();
+            }
     }
-}
-else{
-    printf("line sensor sensing nothing or multiple sensing at once");
+
+    else if(linestate[0] == 0 &&
+            linestate[1] == 1 &&
+            linestate[2] == 0 ){
+
+        while(linestate[0] == 0 &&
+            linestate[1] == 1 &&
+            linestate[2] == 0 )
+            {
+                printf("Going straight");
+            }
+    }
+    else{
+        printf("Mulitple line sensors or none detecting")
+    }
 }
