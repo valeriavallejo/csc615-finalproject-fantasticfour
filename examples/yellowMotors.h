@@ -1,11 +1,12 @@
 /**************************************************************
  * Class: CSC-615-01 Spring 2022
- * Name:
+ * Name:fantastic four
  * Student ID:
  * Github ID:
- * Project:
+ * Project:robot car
  * File: yellowMotors.h
- * Description:
+ * Description:this file contains functions that control which direction a DC motor rotates. 
+ * It contains functions that a allow a motor to rotate either forward or backward
  * **************************************************************/
 #ifndef yellowMotors_h
 #define yellowMotors_h
@@ -23,8 +24,9 @@ int speed;
 
 void motorsForward(int speed);
 void motorsBackward(int speed);
-
+//initializes all motors
 void inItYellowMotors();
+//exits all motors
 void exitYellowMotors();
 
 #endif 
