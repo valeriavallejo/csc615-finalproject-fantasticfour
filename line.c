@@ -1,3 +1,16 @@
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID: 920594217
+ * Github ID: valeriavallejo
+ * Project:robot car
+ * File: line.c
+ * Description: This file contains the code that the line_thread in main
+ * will run. The loop checks whether the IR sensor sees the line or not
+ * and updates lineState array with the values to later be evaluated
+ * in instructions.c
+ * **************************************************************/
+
 #include "line.h"
 
 void *setLineState(){

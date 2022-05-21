@@ -1,3 +1,14 @@
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID: 920594217
+ * Github ID: valeriavallejo
+ * Project:robot car
+ * File: line.h
+ * Description: This file contains a program that holds the includes and 
+ * global variables for the line.c program.
+ * **************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <wiringPi.h>
@@ -14,7 +25,7 @@ int leftlineval;
 int midlineval;
 int rightlineval;
 
-// holds data for current state
+// holds data for current state of the bot on the line
 int lineState[3] = {0, 0, 0};
 /*
    linestate[0] is the left sensor's state

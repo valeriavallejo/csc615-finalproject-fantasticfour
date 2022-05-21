@@ -1,22 +1,26 @@
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID: 920594217
+ * Github ID: valeriavallejo
+ * Project:robot car
+ * File: instructions.c
+ * Description: This file contains the logic for the bot to move 
+ * around the course using the functions and variables in distance.c,
+ * line.c, and yellowMotors.c
+ * **************************************************************/
+
 #include "instructions.h"
 
-
-// add conditionals
-
-// examples:
-
-// if linestate[0] == 1
-    // move left
-
-//if right echo sensor senses it within 10 cm, turn left again, go forward, 
-// turn right and check for obstacle again
-
+// moves the bot slightly right
 void right(){
     MotorForward(MOTORA, speed);
     MotorBackward(MOTORB, speed);
     MotorForward(MOTORC, speed);
     MotorBackward(MOTORD, speed);
 }
+
+// moves the bot slightly left
 void left(){
     MotorForward(MOTORA, speed);
     MotorBackward(MOTORB, speed);

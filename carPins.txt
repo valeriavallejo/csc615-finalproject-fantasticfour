@@ -1,3 +1,13 @@
+/**************************************************************
+ * Class: CSC-615-01 Spring 2022
+ * Name:fantastic four
+ * Student ID:
+ * Github ID:
+ * Project:robot car
+ * File: carPins.txt
+ * Description:This file contains a list of the pins from the raspberry pi used for each piece of hardware
+ * **************************************************************/
+
 DC motor 1: positive wire MA1 negative wire MB2
 DC motor 2: positive wire MA1 negative wire  MA2
 
